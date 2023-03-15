@@ -1,0 +1,54 @@
+﻿@model Airbnb.Models.Hotel;
+@{
+    ViewData["Title"] = "Create";
+}
+<h1>First, Add all about your <span style="color:#F12954">Hotel</span>.</h1>
+
+<form method="post" enctype="multipart/form-data">
+    <label asp-for="Name" class="form-label"></label>
+    <input asp-for="Name" class="form-control" type="text" placeholder="Hotel Name" >
+    <span asp-validation-for="Name"></span>
+
+    <label asp-for="Description" class="form-label"></label>
+    <textarea asp-for="Description" class="form-control" type="text" placeholder="Hotel Description" ></textarea>
+    <span asp-validation-for="Description"></span>
+
+    <label asp-for="Address" class="form-label"></label>
+    <input asp-for="Address" class="form-control" type="text" placeholder="Hotel address">
+    <span asp-validation-for="Address"></span>
+
+    <label asp-for="Phone" class="form-label"></label>
+    <input asp-for="Phone" class="form-control" type="text" placeholder="Hotel phone">
+    <span asp-validation-for="Phone"></span>
+
+    <label asp-for="Email" class="form-label"></label>
+    <input asp-for="Email" type="email" class="form-control" placeholder="name@example.com">
+    <span asp-validation-for="Email"></span>
+
+    <label asp-for="Website" class="form-label"></label>
+    <input asp-for="Website" class="form-control" type="text" placeholder="Hotel website">
+    <span asp-validation-for="Website"></span>
+
+    <label asp-for="Rate" class="form-label"></label>
+    <input asp-for="Rate" class="form-control" type="text" placeholder="Hotel rating">
+    <span asp-validation-for="Rate"></span>
+
+    <label asp-for="Is_Available" class="form-label">Is your hotel available?(True/False)</label>
+    <input asp-for="Is_Available" class="form-control" type="text" placeholder="Hotel availability">
+    <span asp-validation-for="Is_Available"></span>
+
+    <label asp-for="City_Id" class="form-label"></label>
+    <select asp-for="City_Id" asp-items="ViewBag.city" class="form-select"></select>
+    <span asp-validation-for="City_Id"></span>
+
+    <label asp-for="Category_Id" class="form-label"></label>
+    <select asp-for="Category_Id" asp-items="ViewBag.category" class="form-select"></select>
+    <span asp-validation-for="Category_Id"></span>
+    <hr />
+  
+  
+
+    <input asp-action="create" type="submit" class="btn btn-primary center-btn" style="background-color:#F12954;" value="Add Hotel">
+
+</form>
+

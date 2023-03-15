@@ -1,0 +1,44 @@
+﻿@model Airbnb.Models.City
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<main>
+    <nav class="sidebar">
+        <ul>
+            
+            <li><i class="las la-hotel"></i><a href="/Hotel/index">Hotel</a></li>
+            <li><i class="las la-city"></i><a href="/City/index">City</a></li>
+            <li><i class="las la-bed"></i><a href="/Room/index">Rooms</a></li>
+            <li><i class="las la-check-square"></i><a href="/Booking/index">Booking</a></li>
+           @* <li><i class="las la-users"></i><a href="#">Users</a></li>*@
+        </ul>
+    </nav>
+</main>
+
+
+<div class="row move">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CityId" />
+            <div class="form-group">
+                <label asp-for="CityName" class="control-label"></label>
+                <input asp-for="CityName" class="form-control" />
+                <span asp-validation-for="CityName" class="text-danger"></span>
+            </div>
+            <div class="form-group  moveinput">
+                <input type="submit" value="Save" class="btn " />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn cityedit">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

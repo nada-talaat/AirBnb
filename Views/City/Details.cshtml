@@ -1,0 +1,43 @@
+﻿@model Airbnb.Models.City
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<main>
+    <nav class="sidebar">
+        <ul>
+            
+            <li><i class="las la-hotel"></i><a href="/Hotel/index">Hotel</a></li>
+            <li><i class="las la-city"></i><a href="/City/index">City</a></li>
+            <li><i class="las la-bed"></i><a href="/Room/index">Rooms</a></li>
+            <li><i class="las la-check-square"></i><a href="/Booking/index">Booking</a></li>
+            @*<li><i class="las la-users"></i><a href="#">Users</a></li>*@
+        </ul>
+    </nav>
+</main>
+
+<div>
+    
+    <dl class="row">
+        
+    <dl class="row move">
+        
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CityId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CityId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CityName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CityName)
+        </dd>
+    </dl>
+</div>
+<div class="colordetails">
+    <a asp-action="Edit" asp-route-id="@Model?.CityId" class="btn">Edit</a> 
+    <a asp-action="Index" class="btn movedetails ">Back to List</a>
+</div>

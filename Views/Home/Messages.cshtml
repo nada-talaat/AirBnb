@@ -1,0 +1,114 @@
+﻿@model Airbnbfinal.Models.ViewMessagesViewModel
+
+
+<div class="chat-container">
+    <div class="chat-header">
+        <h1>Messages for User @ViewBag.username</h1>
+    </div>
+    <div class="chat-body">
+        @foreach (var sender in Model.GroupedMessages)
+        {
+            <div class="chat-message-group">
+                <div class="chat-message-group-header">
+                    <span>@sender.Key</span>
+                </div>
+                <div class="chat-message-group-body">
+                    @foreach (var message in sender.Value)
+                    {
+                        <div class="chat-message @((message.UserId == Model.UserId) ? "outgoing" : "incoming")">
+                            <div class="chat-message-text">@message.Message1</div>
+                            <div class="chat-message-timestamp">@message.TimeOfSeen.ToString("yyyy-MM-dd HH:mm:ss")</div>
+                        </div>
+                    }
+                </div>
+                <div class="chat-message-group-footer">
+                    <form method="post" asp-action="SendMessage">
+                        <input type="hidden" name="receiverId" value="@Model.UserId" />
+                        <input type="hidden" name="senderId" value="@sender.Key" />
+                        <div class="chat-input-group">
+                            <input type="text" name="message" class="chat-input" placeholder="Type a message" required />
+                            <button type="submit" class="chat-send-button"><i class="fa fa-paper-plane"></i>Send</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .chat-container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .chat-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 16px;
+        background-color: #f5f5f5;
+        border-bottom: 1px solid #ccc;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .chat-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+        overflow-y: auto;
+    }
+
+    .chat-message-group {
+        margin-bottom: 16px;
+    }
+
+    .chat-message-group-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 8px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .chat-message {
+        display: flex;
+        flex-direction: column;
+        max-width: 80%;
+        padding: 8px;
+        margin-bottom: 8px;
+        border-radius: 4px;
+    }
+
+    .chat-message-text {
+        margin-bottom: 4px;
+        font-size: 14px;
+    }
+
+    .chat-message-timestamp {
+        align-self: flex-end;
+        font-size: 12px;
+        color: #888;
+    }
+
+    .chat-message.incoming {
+        align-self: flex-start;
+        background-color: #f5f5f5;
+    }
+
+    .chat-message.outgoing {
+        align-self: flex-end;
+        background-color: #0084ff;
+        color: #fff;
+    }
+
+    .chat-message-group-footer {
+        display: flex;
+        justify-content: center;

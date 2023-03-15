@@ -1,0 +1,246 @@
+﻿@model Airbnb.Models.Hotel;
+
+@*index*@
+
+@*hader*@
+<h1>@Model.Name </h1>
+<span style="color:gray;">@Model.Rate </span> <span style="color:gray;">&nbsp;&nbsp;&nbsp; @Model.Address</span>
+<hr />
+@*photos grid *@
+
+<div class="container text-center" style="margin-top:20px">
+    <div class="row row-cols-2">
+        <div class="col-sm-3">   <img src=/photos/@Model.ID-1.jpg alt="..." class="rounded shadow">   </div>
+        <div class="col-sm-3">   <img src=/photos/@Model.ID-2.jpg alt="..." class="rounded shadow">   </div>
+        <div class="col-sm-3">   <img src=/photos/@Model.ID-3.jpg alt="..." class="rounded shadow">   </div>
+        <div class="col-sm-3">   <img src=/photos/@Model.ID-4.jpg alt="..." class="rounded shadow">   </div>
+    </div>
+</div>
+
+<hr />
+
+@*description*@
+<div class="card col-sm-6" style="margin-bottom:30px;">
+ @* <h5 class="card-header"> Description </h5>*@
+   
+  <div class="card-body">
+        <h5 class="card-title">Description</h5>
+    <p class="card-text">@Model.Description</p>
+  </div>
+</div>
+
+
+@*facilities*@
+
+   <div class="card col-sm-6" style="margin-bottom:30px;"  >
+  @*<h5 class="card-header"> Facilities </h5>*@
+  <div class="card-body">
+        <h5 class="card-title">Facilities</h5>
+        <ul class="card-text" style="columns:2;padding-left:0px" >
+            @foreach (var item in Model.Facilities)
+            {
+
+                @if (item.FacilityId == null)
+                {
+                    <li style="text-decoration:line-through">@item.FacilityType</li>
+                }
+                else
+                {
+                    <li style="list-style:none;" >@item.FacilityType</li>
+                }
+
+            }
+
+    </ul>
+  </div>
+</div>
+
+@*calender*@
+<style>
+
+    h4 {
+        display: flex;
+        align-items: center;
+    }
+
+    span::after {
+        padding-left: 5px;
+    }
+    
+   
+
+    
+</style>
+<div class="row" id="section-to-trigger">
+  <div class="col-sm-3">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Check-In</h4>
+                <p>
+                    Choose your preferred check-In date:
+                    <input type="date" class="datepicker" data-date-format="mm/dd/yyyy">
+
+                </p>
+        
+      </div>
+    </div>
+  </div>
+
+<div class="col-sm-3">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Check-Out</h4>
+        
+                <p>
+                    Choose your preferred check-Out date:
+                     <input type="date" class="datepicker" data-date-format="mm/dd/yyyy">
+
+                </p>
+            </div>
+    </div>
+  </div>
+
+    
+
+    <div class="col-sm-5" id="fixed-card">
+  <div class="card">
+      <div class="card-body">
+                <div class="text-black-50" > @Model.Name </div>
+                <h4 class="card-title  text-dark" >@Model.Room_Price EGP</h4> <hr />
+        @Model.City <br />
+
+        @Model.Address<br />
+        Check-In : <br />
+        @DateTimeOffset.Now
+        <hr />
+                <p class="card-text">
+                             
+          </p>
+          <a href="@Model.HotelPayment"  class="btn btn-primary center-btn" style="background-color:#F12954;">Reserve</a>
+                               <br />
+                               
+           <p class="text-black-50" align="center">You won't be charged yet <br /> Continue to checkout..</p>
+          </div>
+    </div>
+  </div>
+
+  </div>
+
+
+
+  <style>
+    #fixed-card {
+       /* position: fixed;
+        top: 0;
+        right:unset;*/
+        position: fixed;
+        padding: 2em;
+        left: 70%;
+        top: 0%;
+        transform: translateX(-50%);
+        display:none;}
+
+   .center-btn
+    {
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+        margin-top:30px;
+    }
+
+    .center-btn:hover{
+            background-image: linear-gradient(to right, #FB345A,#CF045A);
+    }
+
+
+       
+    
+  </style>
+
+  <script>
+    window.addEventListener('scroll', function () {
+        var section = document.getElementById('section-to-trigger');
+        var sectionPosition = section.getBoundingClientRect().top + window.scrollY;
+        var windowHeight = window.innerHeight;
+        if (window.scrollY > sectionPosition - windowHeight) {
+            document.getElementById('fixed-card').style.display = 'block';
+        } else {
+            document.getElementById('fixed-card').style.display = 'none';
+        }
+    });
+
+    
+
+  </script>
+
+
+
+
+@*review*@
+
+<div class="card col-sm-6" style="margin-bottom:30px;margin-top:30px">
+   
+    <div class="card-body">
+        <h5 class="card-title">Reviews</h5>
+        @foreach (var item in Model.Reviews)
+            {
+        <h6  class="card-text" style="columns:2;padding-left:0px;color:deeppink" >
+            
+               @try
+                {
+                    @item.User.UserName
+                }
+                catch (Exception e)
+                {
+
+                    <h1>@item.User.UserName</h1>
+                }
+                    
+                
+                
+               
+        </h6>
+            
+        <p>@item.Review1</p>
+            <hr /> 
+            }
+
+
+        @* add review*@
+
+        <form method="post" asp-action="addReview" id="add-review-form" >
+        
+        <div class="mb-3">
+            
+                <input asp-for="ID" hidden />
+
+                <textarea asp-action="addReview" name="rev" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write your review..." required></textarea>
+                
+                <input asp-action="addReview" type="submit" class="btn btn-primary center-btn" style="background-color:#F12954;" value="Add Review">
+        </div>
+        </form>
+    </div>
+</div>
+
+
+
+@*contact*@
+
+<div class="card col-sm-6" style="margin-bottom:30px;">
+    <div class="card-body">
+        <h5 class="card-title">Contact</h5>
+        @foreach (var item in Model.Hotel_adminNavigation.UserName)
+        {
+            @item
+
+        }
+        <form method="post" asp-action="Contact">
+            <input asp-for="ID" hidden />
+            <input asp-for="Hotel_admin" hidden/>
+            <textarea asp-action="Contact" name="Msg" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write your message..." required></textarea>
+            <input asp-action="Contact"  type="submit" class="btn btn-primary center-btn" style="background-color:#F12954;">Contact Me</input>
+        </form>
+    </div>
+</div>
+
+

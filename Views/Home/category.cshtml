@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Airbnb.Models.Hotel>
+@{
+    ViewData["Title"] = "category";
+}
+@{
+    var index = 0;
+}
+
+<h1> Your selected category results</h1>
+
+<div class="container text-center">
+    <div class="row row-cols-4">
+
+
+        @foreach (var item in Model)
+        {
+            <a asp-controller="DetailsView" asp-action="Index" asp-route-id="@item.ID" style="text-decoration:none;color:inherit;">
+                <div class="col">
+
+                    <div id="carouselExampleControls-@index" class="carousel slide " data-ride="false">
+
+                        <div class="carousel-inner">
+                            @foreach (var x in item.Images)
+                            {
+                                <div class="carousel-item @(x==item.Images.First()?"active":"")">
+                                    <img src=@x.img class="d-block w-100 img-thumbnail" alt="...">
+                                </div>
+                            }
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls-@index" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls-@index" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+
+                    <h6>@Html.DisplayFor(modelItem=>item.Name)</h6>
+                    <p>@Html.DisplayFor(modelItem=>item.Rate)</p>
+
+                    @foreach (var x in item.Rooms)
+                    {
+                        <p> @Math.Floor((decimal)x.Price) L.E</p>
+                        break;
+                    }
+
+
+                </div>
+            </a>
+            index++;
+
+        }
+
+
+
+
+    </div>
+
+</div>

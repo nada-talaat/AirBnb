@@ -1,0 +1,157 @@
+﻿@model Airbnb.Models.Room;
+
+
+@{
+    ViewData["Title"] = "RoomAdd";
+}
+
+<h1>Finally, Add your variety of <span style="color:#F12954">Rooms</span>.</h1>
+<form asp-action="RoomAdd" method="post">
+    <label asp-for="Description" class="form-label"></label>
+    <input asp-for="Description" class="form-control" type="text" placeholder="room description" >
+    <span asp-validation-for="Description"></span>
+
+    <label asp-for="RoomType" class="form-label"></label>
+    <textarea asp-for="RoomType" class="form-control" type="text" placeholder="Room Type"></textarea>
+    <span asp-validation-for="RoomType"></span>
+
+    <label asp-for="Is_Available" class="form-label"></label>
+    <input asp-for="Is_Available" class="form-control" type="text" placeholder="is your room available">
+    <span asp-validation-for="Is_Available"></span>
+
+    <label asp-for="Price" class="form-label"></label>
+    <input asp-for="Price" class="form-control" type="text" placeholder="room price">
+    <span asp-validation-for="Price"></span>
+
+
+    <input  type="submit" class="btn btn-primary center-btn" style="background-color:#F12954;" value="save your room">
+        
+</form>
+
+
+<button><a type="button" asp-action="Success" class="btn btn-primary center-btn" style="background-color:#F12954;">Done</a></button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*
+<form id="room-form">
+    <label for="room-type-count">Number of Room Types:</label>
+    <select id="room-type-count" name="room-type-count">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+       
+    </select>
+    <input type="submit" value="Submit">
+</form>
+
+ <form method="post">
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const roomForm = document.getElementById('room-form');
+      const roomTypeCount = document.getElementById('room-type-count');
+
+      roomForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const numRoomTypes = parseInt(roomTypeCount.value);
+        const formContainer = document.getElementById('room-form');
+        formContainer.innerHTML = '';
+ 
+        for (let i = 1; i <= numRoomTypes; i++) {
+          const roomTypeForm = `
+            <h2>Room Type ${i}</h2>
+           
+            <label for="room-type-${i}-RoomType">RoomTypes:</label>
+                <input type="text" id="room-type-${i}-RoomType" name="room-type-${i}-RoomType">
+            <br>
+                
+                <label for="room-type-${i}-Is_Available">is your room avalible ?:</label>
+                            <input type="text" id="room-type-${i}-Is_Available" name="room-type-${i}-Is_Available">
+                <br>
+
+            <label for="room-type-${i}-price">Price:</label>
+            <input type="number" id="room-type-${i}-price" name="room-type-${i}-price">
+            <br>
+            <label for="room-type-${i}-description">Description:</label>
+            <textarea id="room-type-${i}-description" name="room-type-${i}-description"></textarea>
+            <hr>
+                 <input type="submit" value = "Submit" >
+              
+          `;
+          formContainer.insertAdjacentHTML('beforeend', roomTypeForm);
+        }
+           
+      });
+    });
+</script>
+
+</form>
+
+*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<form method="post">
+    <label class="form-label">Enter number of your rooms types</label>
+    <input name="type" class="form-control" type="text" placeholder="room type no.">
+    
+    <hr />
+
+
+    <input type="submit" class="btn btn-primary center-btn" style="background-color:#F12954;" value="Ok">
+
+</form>
+
+@for(int i=0; i<ViewBag.t;){
+
+}*@

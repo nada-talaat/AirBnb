@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Airbnb.Models.City>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<a asp-action="Create" class="create btn">Create</a>
+<main>
+    <nav class="sidebar">
+        <ul>
+            
+            <li><i class="las la-hotel"></i><a href="/Hotel/index">Hotel</a></li>
+            <li><i class="las la-city"></i><a href="/City/index">City</a></li>
+            <li><i class="las la-bed"></i><a href="/Room/index">Rooms</a></li>
+            <li><i class="las la-check-square"></i><a href="/Booking/index">Booking</a></li>
+            <li><i class="las la-users"></i><a asp-action="ManageUsers" asp-controller="Hotel">users</a></li>
+        </ul>
+    </nav>
+</main>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CityId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CityName)
+            </th>
+           
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CityId)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CityName)
+            </td>
+               
+            <td >
+                <div class="action">
+                <a asp-action="Edit" asp-route-id="@item.CityId">Edit</a> 
+                <a asp-action="Details" asp-route-id="@item.CityId">Details</a> 
+                
+                    </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

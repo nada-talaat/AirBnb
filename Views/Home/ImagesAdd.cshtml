@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewData["Title"] = "ImagesAdd";
+}
+
+<h1>Third, Add your Hotel <span style="color:#F12954">Images</span>.</h1>
+<form method="post" enctype="multipart/form-data">
+    
+    <div class="mb-3">
+       
+        <label for="formFileMultiple" class="form-label">Upload five images of your Hotel</label>
+        <input name="files" class="form-control" type="file" id="formFileMultiple" multiple>
+    </div>
+    <input asp-action="ImagesAdd" type="submit" class="btn btn-primary center-btn" style="background-color:#F12954;" value="Add images">
+</form>
+

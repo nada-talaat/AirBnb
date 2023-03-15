@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<ApplicationUser> signInManger;
+@inject UserManager<ApplicationUser> UserManager;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Vacation Hotels-Airbnb</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Airbnbfinal.styles.css" asp-append-version="true" />
+    <link rel="icon" type="image/png" sizes="266x300" href="~/photos/ABNB-4aaade0f.png" />
+    <link rel="stylesheet"
+     href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" />
+</head>
+<body>
+    <header>
+   <nav class="header navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/photos/logo.svg" /></a>
+                <div class="nav_header">
+                    <div class="droplist">
+                        <button class=" btn2 account">
+                            <img class="accountimg1" src="~/photos/hamburger.svg">
+                            <img class="accountimg2" src="~/photos/account.svg">
+                        </button>
+                        <div class="droplistcontent dropdown-menu">
+                            <partial name="_LoginPartial" />
+                            <a asp-action="Create"  class="dropdown-item">Create </a>
+                            @if (signInManger.IsSignedIn(User) && User.IsInRole("Admin"))
+                            {
+                                <a asp-action="Index" asp-controller="Hotel">admin</a>
+                            }
+                            <a asp-action="Messages" class="dropdown-item">Messages</a>
+                   @*<a asp-area="Identity" asp-page="/Account/Logout"class="dropdown-item">Log out </a>*@
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <section class="footer-section">
+        <footer>
+            <div class="textfoooter">
+       &copy; 2023 - Airbnbfinal - <a asp-area="" asp-controller="Home" asp-action="Index" class="text-decoration-none text-secondary">Home</a>
+            </div>
+        </footer>
+    </section>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

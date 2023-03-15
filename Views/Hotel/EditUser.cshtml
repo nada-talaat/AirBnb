@@ -1,0 +1,63 @@
+﻿@model Airbnb.Models.AspNetUser
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<main>
+    <nav class="sidebar">
+        <ul>
+
+            <li><i class="las la-hotel"></i><a href="/Hotel/index">Hotel</a></li>
+            <li><i class="las la-city"></i><a href="/City/index">City</a></li>
+            <li><i class="las la-bed"></i><a href="/Room/index">Rooms</a></li>
+            <li><i class="las la-check-square"></i><a href="/Booking/index">Booking</a></li>
+            <li><i class="las la-users"></i><a asp-action="ManageUsers">users</a></li>
+        </ul>
+    </nav>
+</main>
+
+<div class="row move">
+
+    <div class="row">
+        <div class="col-md-4">
+
+
+            <form method="post" enctype="multipart/form-data">
+                <label asp-for="Id" class="form-label"></label>
+                <input asp-for="Id" class="form-control" type="hidden" placeholder="@Model.Id" />
+                <span asp-validation-for="Id"></span>
+                <label asp-for="UserName" class="form-label"></label>
+                <input asp-for="UserName" class="form-control" type="text" placeholder="@Model.UserName" />
+                <span asp-validation-for="FirstName"></span>
+                <label asp-for="FirstName" class="form-label"></label>
+                <input asp-for="FirstName" class="form-control" type="text" placeholder="@Model.FirstName" />
+                <span asp-validation-for="FirstName"></span>
+                <label asp-for="LastName" class="form-label"></label>
+                <input asp-for="LastName" class="form-control" type="text" placeholder="@Model.LastName" />
+                <span asp-validation-for="LastName"></span>
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control" type="text" placeholder="@Model.Email" />
+                <span asp-validation-for="Email"></span>
+                <label asp-for="PhoneNumber" class="form-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" type="text" placeholder="@Model.PhoneNumber" />
+                <span asp-validation-for="PhoneNumber"></span>
+                <label class="form-label">Roles</label>
+                <select name="Roles" class="form-select" asp-items="@ViewBag.roles"></select>
+
+
+                <input asp-action="EditUser" type="submit" class="btn btn-primary center-btn" style="background-color:#F12954;" value="submit Changes">
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

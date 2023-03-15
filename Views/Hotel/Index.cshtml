@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Airbnb.Models.Hotel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+    @*<button asp-action="Create" asp-controller="Hotel" class="create btn">Create</button>*@
+<a asp-action="Create" asp-controller="Home" class="create btn">Create</a>
+
+<main>
+    <nav class="sidebar">
+        <ul>
+            
+            <li><i class="las la-hotel"></i><a href="/Hotel/index">Hotel</a></li>
+            <li><i class="las la-city"></i><a href="/City/index">City</a></li>
+            <li><i class="las la-bed"></i><a href="/Room/index">Rooms</a></li>
+            <li><i class="las la-check-square"></i><a href="/Booking/index">Booking</a></li>
+            <li><i class="las la-users"></i><a asp-action="ManageUsers">users</a></li>
+        </ul>
+    </nav>
+    </main>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+          
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Facilities)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+             
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.City.CityName)
+            </td>
+            
+                <td>
+                    @* @Html.DisplayFor(modelItem => item.Facilities)*@
+                    <select>
+                        @foreach (var x in item.Facilities)
+                        {
+                            <option>@x.FacilityType</option>
+
+                        }
+                    </select>
+                </td>
+            <td>
+                <div class="action">
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> 
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> 
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                    </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

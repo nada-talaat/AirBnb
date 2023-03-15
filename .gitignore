@@ -1,0 +1,18 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/Airbnbfinal/DesignTimeBuild/.dtbcache.v2
+*.vsidx
+/.vs/Airbnbfinal/FileContentIndex/48471514-781b-434d-aebe-d10b34e82754.vsidx
+/.vs/Airbnbfinal/FileContentIndex/875f0d28-4810-42ee-b939-bb42be42f70e.vsidx
+/.vs/Airbnbfinal/FileContentIndex/f16f609f-9fb7-445a-b6cf-a4467d84458a.vsidx
+/.vs/Airbnbfinal/FileContentIndex/f520533d-5060-4772-a199-a9b5b6b66980.vsidx
+/.vs/Airbnbfinal/FileContentIndex/write.lock
+/.vs/Airbnbfinal/v17/.futdcache.v2
+/.vs/Airbnbfinal/v17/.suo
+/.vs/ProjectEvaluation/airbnbfinal.metadata.v5.2
+/.vs/ProjectEvaluation/airbnbfinal.projects.v5.2
+/bin/Debug/net6.0/Airbnbfinal.dll
+/bin/Debug/net6.0/Airbnbfinal.pdb
+/obj/Debug/net6.0/Airbnbfinal.assets.cache

@@ -1,0 +1,17 @@
+﻿@model IEnumerable< Airbnb.Models.Hotel>;
+@{
+    ViewData["Title"] = "Facilities";
+}
+
+<h1>Second, Specify your hotel  <span style="color:#F12954">Facilities</span>.</h1>
+
+<form method="post" enctype="multipart/form-data">
+   
+     <input type="hidden" value=@ViewBag.Id />
+    <label class="form-label">Facilities</label>
+    <select name="Facilit" class="form-select" multiple asp-items="ViewBag.fac"></select>
+    <input asp-action="Facilities" type="submit" class="btn btn-primary center-btn" style="background-color:#F12954;" value="Add Facilities">
+
+
+</form>
+ 
